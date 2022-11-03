@@ -11,10 +11,10 @@ Resources:
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
-      ExecutionRoleArn: !ImportValue ECSTaskExecutionRole
+      ExecutionRoleArn: 'arn:aws:iam::858158671672:role/LabRole'
       ContainerDefinitions:
         - Name: candidate-api
-          Image: "180543367711.dkr.ecr.ap-southeast-2.amazonaws.com/demo-api:latest"
+          Image: "858158671672.dkr.ecr.us-east-1.amazonaws.com/demo-api:latest"
           Cpu: 256
           Memory: 512
           PortMappings:
@@ -49,7 +49,7 @@ Resources:
             - !ImportValue ContainerSecurityGroup
       LoadBalancers:
         - ContainerName: candidate-api
-          ContainerPort: 80
+          ContainerPort: 5236
           TargetGroupArn: !Ref TargetGroup
 
   TargetGroup:
